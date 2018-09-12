@@ -1,12 +1,19 @@
 package core;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 public class DeckTest extends TestCase {
 	
-	
+	@Test
 	//tests to see if a randomized deck of cards is created properly
-	public void RandomDeckTest() {
+	public void testDeck() {
 		Deck testDeck = new Deck();
 		
 		//make sure deck of cards contains total of 52 cards
@@ -18,9 +25,10 @@ public class DeckTest extends TestCase {
 		
 		//make sure it is randomized (i.e. if another is created it won't be the same order)
 		Deck testDeck2 = new Deck();
-		assertTrue(testDeck1 != testDeck2);
+		assertFalse(testDeck.isSameAs(testDeck2));
 		
 	}
+	
 	
 
 }
