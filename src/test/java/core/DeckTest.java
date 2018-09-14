@@ -24,6 +24,12 @@ public class DeckTest extends TestCase {
 		
 	}
 	
+	@Test 
+	public void readFileInput() {
+		Game game = new Game("test1.txt");
+		assertTrue(game.inputToString() == "SK HQ SQ C5 H DJ");
+	}
+	
 	
 
 }
