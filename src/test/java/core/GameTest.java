@@ -25,16 +25,28 @@ public class GameTest extends TestCase {
 	}
 	
 	public void testCalculateScore() {
-		Hand testScore = new Hand();
+		Player player = new Player();
+						
+		//ordinary case
+		player.addCards(["H5","S2"]);
+		assertTrue(player.calculateScore()==7);
 		
-		testScore.add("SK").add("H2");
+		//add one ace where counts as 11
+		player.addCard("HA");
+		assertTrue(player.calculateScore()==18)
 		
-		assertTrue(testScore.getScore() == 12);
+		//Ace now counts as 1
+		player.addCard("HK");
+		assertTrue(player.calculateScore()==18);
 		
-		testScore.add("S1").add("H5")
+		//behaviour when there are two aces (no splitting)
+		player.addCard("CA");
+		assertTrue(player.calculateScore()==19);
 		
-		assertTrue(testScore.getScore()==18);
-		
+		//player busts when over 21;
+		player.addCard("SQ");
+		player.calculateScore();
+		assertTrue(player.getBust());
 		
 	}
 	
