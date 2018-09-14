@@ -6,50 +6,111 @@ import junit.framework.TestCase;
 
 public class GameTest extends TestCase {
 	
-	@Test
+	
 	//tests to see if players are properly initialized with starting hand
-	public void testInitialHand() {
-		Game consoleGame = new Game("c");
-		Game fileGame = new Game("f");	
+	
+	@Test 
+	public void testInitialHandFile() {
+		Game fileGame = new Game("test1.txt");
 		
-		String consoleHand = consoleGame.showHand();
-		String fileHand = fileGame.showHand();
+		fileGame.initializeHands();
+		String hand = fileGame.showHands();
 		
 		String expected = "Player hand: SK HQ | Dealer Hand: SQ X";
+		assertTrue(hand.equals(expected));	
 		
-		//regardless of content of hands, the randomized hand from the console should be the same length as expected
-		assertTrue(consoleHand.length = expected);
+	}
+	
+	@Test
+	public void testInitialHandConsole() {
 		
-		assertTrue(fileHand.equals(expected));
+		Game consoleGame = new Game();
+				
+		//reads first card from deck
+		//this should be the same as the players first card
+		String topCard = consoleGame.getFirstCard();
+		
+		consoleGame.initializeHands();		
+		String hand = consoleGame.showHands();
+			
+		
+		//get first card from consoleHand
+		String firstCard = hand.substring(8, hand.indexOf(' ', 8));	
+		assertTrue(firstCard.equals(topCard));
+		
+		//check last card is not displayed
+		
+		assertTrue(hand.charAt(hand.length()-1)=='X');		
+		
 			
 	}
 	
+	@Test
 	public void testCalculateScore() {
 		Player player = new Player();
 						
 		//ordinary case
 		player.addCards(["H5","S2"]);
-		assertTrue(player.calculateScore()==7);
+		player.calculateScore();
+		assertTrue(player.getScore()==7);
 		
 		//add one ace where counts as 11
 		player.addCard("HA");
-		assertTrue(player.calculateScore()==18)
+		player.calculateScore()
+		assertTrue(player.getScore()==18)
 		
 		//Ace now counts as 1
 		player.addCard("HK");
-		assertTrue(player.calculateScore()==18);
+		player.calculateScore()
+		assertTrue(player.getScore()==18);
 		
 		//behaviour when there are two aces (no splitting)
 		player.addCard("CA");
-		assertTrue(player.calculateScore()==19);
-		
-		//player busts when over 21;
-		player.addCard("SQ");
-		player.calculateScore();
-		assertTrue(player.getBust());
+		player.calculateScore()
+		assertTrue(player.getScore() ==19);
 		
 	}
 	
+	
+	@Test
+	public void testPlayerBust() {	
+		player.addCards(["S8","S9", "SK"])
+		player.calculateScore();
+		assertTrue(player.isBust());		
+	}
+	
+	@Test
+	public void testPlayerGetsBlackjack() {
+		//calculates blackjack;
+		player.addCards(["SA", "SK"]);
+		player.calculateScore();
+		assertTrue(player.getBlackjack());
+		
+	}
+	
+	@Test
+	public void testInitialPlayerBlackjack() {
+		Game testGame = new Game("initialBlackjackPlayer.txt");	
+		assertTrue(testGame.getPlayer().hasBlackjack());
+		assertTrue(testGame.getWinner().equals("Player");
+	}
+	
+	@Test
+	public void testInitialDealerBlackjack() {
+		Game testGame = new Game("initialBlackjackDealer.txt");
+		assertTrue(testGame.getDealer().hasBlackjack());
+		assertTrue(testGame.getWinner().equals("Dealer");
+	}
 
+	@Test
+	public void testPlayerHit() {
+		//file: S2 HQ SQ H5 H S5
+		Game game = new Game("playerHit");
+		//will read hit from file
+		game.nextTurn();
+		assertTrue(game.getPlayerScore()==17);	
+		String expected = "Player hand: S2 HQ S5 | Dealer Hand: SQ X";	
+		assertTrue(game.showHands().equals(expected));
+	}
 	
 }
