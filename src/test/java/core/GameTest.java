@@ -16,9 +16,6 @@ public class GameTest extends TestCase {
 		fileGame.initializeHands();
 		String hand = fileGame.showHands();
 		
-		System.out.println("in file hand test");
-		System.out.println(hand);
-		
 		String expected = "Player: SK HQ | Dealer: SQ X";
 		assertTrue(hand.equals(expected));	
 		
@@ -76,7 +73,7 @@ public class GameTest extends TestCase {
 	@Test
 	public void testPlayerBust() {
 		Player player = new Player();
-		player.addCards(new String[] {"S8","S9", "SK"});
+		player.addCards(new String[] {"S8","S9", "SK"});// 8+9 = 17 + 10 = 27
 		player.calculateScore();
 		assertTrue(player.isBust());		
 	}
@@ -96,25 +93,30 @@ public class GameTest extends TestCase {
 	@Test
 	public void testInitialPlayerBlackjack() {
 		Game testGame = new Game("initialBlackjackPlayer.txt");	
+		testGame.initializeHands();
+		testGame.calculateWinner();
 		assertTrue(testGame.playerHasBlackjack());
-		assertTrue(testGame.getWinner().equals("Player");
+		assertTrue(testGame.getWinner().equals("Player"));
 	}
 	
 	@Test
 	public void testInitialDealerBlackjack() {
 		Game testGame = new Game("initialBlackjackDealer.txt");
+		testGame.initializeHands();
+		testGame.calculateWinner();
 		assertTrue(testGame.dealerHasBlackjack());
-		assertTrue(testGame.getWinner().equals("Dealer");
+		assertTrue(testGame.getWinner().equals("Dealer"));
 	}
 
 	@Test
 	public void testPlayerHit() {
 		//file: S2 HQ SQ H5 H S5
 		Game game = new Game("playerHit.txt");
+		game.initializeHands();
 		//will read hit from file
 		game.nextTurn();
 		assertTrue(game.getPlayerScore()==17);	
-		String expected = "Player hand: S2 HQ S5 | Dealer Hand: SQ X";	
+		String expected = "Player: S2 HQ S5 | Dealer: SQ X";	
 		assertTrue(game.showHands().equals(expected));
 	}
 	

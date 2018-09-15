@@ -16,7 +16,7 @@ public class Game {
 	Player player = new Player();
 	Player dealer = new Player();
 	String winner = "";
-	String gameState = "player";
+	int gameState = 0; //0 for player turn, 1 for dealer turn. should probably be enum
 	
 	public Game() {
 		input = new Deck().toQueue();
@@ -30,7 +30,6 @@ public class Game {
 	
 		
 	public void initializeHands() {
-		System.out.println(input);
 		player.addCard(input.pop());
 		player.addCard(input.pop());
 		dealer.addCard(input.pop());
@@ -40,16 +39,52 @@ public class Game {
 	
 	public String showHands() {
 		String hand = "Player: " + player.showHand() + " | Dealer: " + dealer.showHand();
-		if (gameState.equals("player")) {
+		if (gameState == 0) {
 			hand = hand.substring(0,hand.lastIndexOf(" ")) + " X";
 		}
 		return hand;
 	}
 			
+	public int getPlayerScore() {
+		return player.getScore();
+	}
 	
 	public String getFirstCard() {
 		return input.get(0);
 	}
+	
+	
+	public void nextTurn() {
+		nextTurn(input.pop());
+	}
+	
+	public void nextTurn(String move) {
+		if (move.equals("H")) {
+			hit();
+		}else if (move.equals("S")) {
+			stand();
+		}
+	}	
+	
+	public void hit() {
+		if (gameState == 0) {
+			player.addCard(input.pop());
+			if (player.isBust()||player.hasBlackjack()) {
+				gameState +=1;
+			}
+		}else if (gameState == 1) {
+			dealer.addCard(input.pop());
+			if (dealer.isBust()||dealer.hasBlackjack()) {
+				gameState +=1;
+			}
+		}
+	}
+	
+	public void stand() {
+		gameState += 1;
+	}
+	
+	
 	
 	
 	public boolean playerHasBlackjack() {
@@ -61,6 +96,9 @@ public class Game {
 	}
 	
 	public void calculateWinner() {
+		
+		player.calculateScore();
+		dealer.calculateScore();
 		
 		if (dealer.hasBlackjack()) {
 			winner = "Dealer";		
@@ -83,8 +121,10 @@ public class Game {
 		String input;
 		
 		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(filename).getFile());
 		
+		
+		//error checking. If file does not exist, just move to random deck?
+		File file = new File(classLoader.getResource(filename).getFile());
 		
 		try (Scanner scanner = new Scanner(file)) {
 
