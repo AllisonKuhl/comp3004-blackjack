@@ -15,7 +15,8 @@ public class Game {
 	LinkedList<String> input;
 	Player player = new Player();
 	Player dealer = new Player();
-	
+	String winner = "";
+	String gameState = "player";
 	
 	public Game() {
 		input = new Deck().toQueue();
@@ -29,6 +30,7 @@ public class Game {
 	
 		
 	public void initializeHands() {
+		System.out.println(input);
 		player.addCard(input.pop());
 		player.addCard(input.pop());
 		dealer.addCard(input.pop());
@@ -37,24 +39,40 @@ public class Game {
 	
 	
 	public String showHands() {
-		System.out.println(player.showHand());
-		return player.showHand();
+		String hand = "Player: " + player.showHand() + " | Dealer: " + dealer.showHand();
+		if (gameState.equals("player")) {
+			hand = hand.substring(0,hand.lastIndexOf(" ")) + " X";
+		}
+		return hand;
+	}
+			
+	
+	public String getFirstCard() {
+		return input.get(0);
 	}
 	
 	
+	public boolean playerHasBlackjack() {
+		return player.hasBlackjack();
+	}
 	
+	public boolean dealerHasBlackjack() {
+		return dealer.hasBlackjack();
+	}
 	
+	public void calculateWinner() {
+		
+		if (dealer.hasBlackjack()) {
+			winner = "Dealer";		
+		}else if (player.hasBlackjack()){
+			winner = "Player";
+		}		
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getWinner() {
+		return winner;
+	}
 	
 	
 	

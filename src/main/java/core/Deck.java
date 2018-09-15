@@ -65,14 +65,13 @@ public class Deck {
 	  
 	  
 	 //add method to return deck as a queue
-	 public LinkedList toQueue() {
+	 public LinkedList<String> toQueue() {
 		 
 		 LinkedList<String> q = new LinkedList<String>();
 		 
-		 for (int i = 0;i>52;i++) {
+		 for (int i = 0;i<52;i++) {
 			 q.add(cards[i]);
 		 }
-		 
 		 return q;
 	 }
 	  

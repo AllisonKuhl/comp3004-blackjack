@@ -16,7 +16,10 @@ public class GameTest extends TestCase {
 		fileGame.initializeHands();
 		String hand = fileGame.showHands();
 		
-		String expected = "Player hand: SK HQ | Dealer Hand: SQ X";
+		System.out.println("in file hand test");
+		System.out.println(hand);
+		
+		String expected = "Player: SK HQ | Dealer: SQ X";
 		assertTrue(hand.equals(expected));	
 		
 	}
@@ -32,7 +35,6 @@ public class GameTest extends TestCase {
 		
 		consoleGame.initializeHands();		
 		String hand = consoleGame.showHands();
-			
 		
 		//get first card from consoleHand
 		String firstCard = hand.substring(8, hand.indexOf(' ', 8));	
@@ -67,8 +69,7 @@ public class GameTest extends TestCase {
 		//behaviour when there are two aces (no splitting)
 		player.addCard("CA");
 		player.calculateScore();
-		assertTrue(player.getScore() ==19);
-		
+		assertTrue(player.getScore()==19);		
 	}
 	
 	
@@ -95,21 +96,21 @@ public class GameTest extends TestCase {
 	@Test
 	public void testInitialPlayerBlackjack() {
 		Game testGame = new Game("initialBlackjackPlayer.txt");	
-		assertTrue(testGame.getPlayer().hasBlackjack());
+		assertTrue(testGame.playerHasBlackjack());
 		assertTrue(testGame.getWinner().equals("Player");
 	}
 	
 	@Test
 	public void testInitialDealerBlackjack() {
 		Game testGame = new Game("initialBlackjackDealer.txt");
-		assertTrue(testGame.getDealer().hasBlackjack());
+		assertTrue(testGame.dealerHasBlackjack());
 		assertTrue(testGame.getWinner().equals("Dealer");
 	}
 
 	@Test
 	public void testPlayerHit() {
 		//file: S2 HQ SQ H5 H S5
-		Game game = new Game("playerHit");
+		Game game = new Game("playerHit.txt");
 		//will read hit from file
 		game.nextTurn();
 		assertTrue(game.getPlayerScore()==17);	

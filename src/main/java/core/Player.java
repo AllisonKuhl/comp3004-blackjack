@@ -57,13 +57,8 @@ public class Player {
 	
 	public String showHand() {
 
-		String cards = "";
-		Iterator<Card> Iterator = hand.iterator();
-		while (Iterator.hasNext()) {		
-		   cards = Iterator.next().toString();
-		   }
-			
-		return cards;
+		return hand.toString().replaceAll(",","").replace("[","").replaceAll("]", "");
+	
 	}
 	
 	

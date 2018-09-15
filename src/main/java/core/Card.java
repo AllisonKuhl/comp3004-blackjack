@@ -9,12 +9,12 @@ public class Card {
 
 	public Card(String name) {
 		this.name = name;
-		this.num = name.substring(1,name.length()-1);
+		this.num = name.substring(1,name.length());
 		calculateValue(num);
 	}
 	
 	private void calculateValue(String cardnum) {
-		System.out.println(cardnum);
+		
 		if (cardnum.equals("K")||cardnum.equals("Q")||cardnum.equals("J")) {
 			this.value = 10;
 		}else if (cardnum.equals("A")) {
