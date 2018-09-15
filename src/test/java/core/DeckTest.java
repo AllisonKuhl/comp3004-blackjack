@@ -27,6 +27,7 @@ public class DeckTest extends TestCase {
 	@Test 
 	public void testReadFileInput() {
 		Game game = new Game("test1.txt");
+		System.out.println(game.inputToString());
 		assertTrue(game.inputToString().equals("SK HQ SQ C5 H DJ"));
 	}
 	

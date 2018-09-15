@@ -50,41 +50,45 @@ public class GameTest extends TestCase {
 		Player player = new Player();
 						
 		//ordinary case
-		player.addCards(["H5","S2"]);
+		player.addCards(new String[] {"H5","S2"});
 		player.calculateScore();
 		assertTrue(player.getScore()==7);
 		
 		//add one ace where counts as 11
 		player.addCard("HA");
-		player.calculateScore()
-		assertTrue(player.getScore()==18)
+		player.calculateScore();
+		assertTrue(player.getScore()==18);
 		
 		//Ace now counts as 1
 		player.addCard("HK");
-		player.calculateScore()
+		player.calculateScore();
 		assertTrue(player.getScore()==18);
 		
 		//behaviour when there are two aces (no splitting)
 		player.addCard("CA");
-		player.calculateScore()
+		player.calculateScore();
 		assertTrue(player.getScore() ==19);
 		
 	}
 	
 	
 	@Test
-	public void testPlayerBust() {	
-		player.addCards(["S8","S9", "SK"])
+	public void testPlayerBust() {
+		Player player = new Player();
+		player.addCards(new String[] {"S8","S9", "SK"});
 		player.calculateScore();
 		assertTrue(player.isBust());		
 	}
 	
 	@Test
 	public void testPlayerGetsBlackjack() {
+		
+		Player player = new Player();
+		
 		//calculates blackjack;
-		player.addCards(["SA", "SK"]);
+		player.addCards(new String[] {"SA", "SK"});
 		player.calculateScore();
-		assertTrue(player.getBlackjack());
+		assertTrue(player.hasBlackjack());
 		
 	}
 	

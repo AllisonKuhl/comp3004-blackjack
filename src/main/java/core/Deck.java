@@ -1,5 +1,6 @@
 package core;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
@@ -62,6 +63,18 @@ public class Deck {
 	    }
 	  }
 	  
+	  
+	 //add method to return deck as a queue
+	 public LinkedList toQueue() {
+		 
+		 LinkedList<String> q = new LinkedList<String>();
+		 
+		 for (int i = 0;i>52;i++) {
+			 q.add(cards[i]);
+		 }
+		 
+		 return q;
+	 }
 	  
 	
 	private void createFullDeck() {

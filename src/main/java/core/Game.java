@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class Game {
 	
 	boolean fromFile;
-	LinkedList input;
-	Player player;
-	Player dealer;
+	LinkedList<String> input;
+	Player player = new Player();
+	Player dealer = new Player();
 	
 	
 	public Game() {
@@ -27,14 +27,19 @@ public class Game {
 		fromFile = true;
 	}
 	
-	
-	/*
-	public void initalizeHands() {
-		player.addCards(input.pop(),input.pop());
-		dealer.addCards(input.pop(),input.pop());
+		
+	public void initializeHands() {
+		player.addCard(input.pop());
+		player.addCard(input.pop());
+		dealer.addCard(input.pop());
+		dealer.addCard(input.pop());
 	}
-	*/
 	
+	
+	public String showHands() {
+		System.out.println(player.showHand());
+		return player.showHand();
+	}
 	
 	
 	
