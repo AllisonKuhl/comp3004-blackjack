@@ -13,6 +13,7 @@ public class Player {
 	
 	public void addCard(String card) {
 		hand.add(new Card(card));
+		calculateScore();
 	}
 	
 	public void addCards(String[] arr) {
@@ -26,23 +27,26 @@ public class Player {
 		int total = 0;
 		int aces = 0;
 		int current;
+	
 		
 		Iterator<Card> Iterator = hand.iterator();
 		while (Iterator.hasNext()) {
-			
 		   current = Iterator.next().getValue();
+		   System.out.println(current);
 		   total += current;
 		   if (current == 11) {
 			   aces += 1;
 		   }
 		}
 		
+		System.out.println(total);
+		System.out.println("aces " + aces);
+		
 		//will change aces to 1 if over 21
-		while (aces>=0 && total > 21) {
+		while (aces>0 && total > 21) {
 			total-=10;
 			aces-=1;
 		}
-		
 		
 		if (total>21) {
 			bust = true;
