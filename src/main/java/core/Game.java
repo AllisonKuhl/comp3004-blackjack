@@ -13,6 +13,8 @@ public class Game {
 	
 	boolean fromFile;
 	LinkedList input;
+	Player player;
+	Player dealer;
 	
 	
 	public Game() {
@@ -24,6 +26,21 @@ public class Game {
 		input = readFile(file);
 		fromFile = true;
 	}
+	
+	
+	/*
+	public void initalizeHands() {
+		player.addCards(input.pop(),input.pop());
+		dealer.addCards(input.pop(),input.pop());
+	}
+	*/
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -68,9 +85,7 @@ public class Game {
 	
 	
 	public String inputToString() {
-		
-		//need to update this
-		return input.toString();
+		return input.toString().replaceAll(",","").replace("[","").replaceAll("]", "");
 	}
 	
 	
