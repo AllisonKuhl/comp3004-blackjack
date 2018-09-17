@@ -32,15 +32,11 @@ public class Player {
 		Iterator<Card> Iterator = hand.iterator();
 		while (Iterator.hasNext()) {
 		   current = Iterator.next().getValue();
-		   System.out.println(current);
 		   total += current;
 		   if (current == 11) {
 			   aces += 1;
 		   }
 		}
-		
-		System.out.println(total);
-		System.out.println("aces " + aces);
 		
 		//will change aces to 1 if over 21
 		while (aces>0 && total > 21) {
@@ -59,12 +55,42 @@ public class Player {
 	}
 	
 	
+	public boolean  hitOrStand() {
+		int total = 0;
+		int aces = 0;
+		int current;
+		
+		Iterator<Card> Iterator = hand.iterator();
+		while (Iterator.hasNext()) {
+		   current = Iterator.next().getValue();
+		   total += current;
+		   if (current == 11) {
+			   aces += 1;
+		   }
+		}
+		//will change aces to 1 if over 21
+		while (aces>0 && total > 21) {
+			total-=10;
+			aces-=1;
+		}
+		System.out.println("here we are");
+		System.out.println(total);
+		if (total == 17 && aces >= 1) {
+			return true;
+		}else if (total <= 16) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
 	public String showHand() {
 
 		return hand.toString().replaceAll(",","").replace("[","").replaceAll("]", "");
 	
 	}
-	
+
 	
 	
 	public int getScore() {
