@@ -33,6 +33,13 @@ public class GameControllerTest extends TestCase {
 	}
 	
 	@Test
+	public void testDealerWins() {
+		GameController game = new GameController("dealerWins.txt");
+		assertTrue(game.getWinner().equals("Player"));	
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DQ"));
+	}
+		
+	@Test
 	public void testPlayerBlackjackAfterManyHits(){
 		GameController game = new GameController("playerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Player"));	

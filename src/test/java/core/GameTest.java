@@ -63,7 +63,7 @@ public class GameTest extends TestCase {
 		player.calculateScore();
 		assertTrue(player.getScore()==18);
 		
-		//behaviour when there are two aces (no splitting)
+		//behaviour when there are two aces (no splitting) both == 1
 		player.addCard("CA");
 		player.calculateScore();
 		assertTrue(player.getScore()==19);		
