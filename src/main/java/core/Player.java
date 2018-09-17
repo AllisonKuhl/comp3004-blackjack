@@ -75,6 +75,7 @@ public class Player {
 		}
 		System.out.println("here we are");
 		System.out.println(total);
+		System.out.println(aces);
 		if (total == 17 && aces >= 1) {
 			return true;
 		}else if (total <= 16) {

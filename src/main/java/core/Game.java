@@ -84,8 +84,9 @@ public class Game {
 		gameState += 1;
 	}
 	
-	
-	
+	public int whoseTurn() {
+		return gameState;
+	}
 	
 	public boolean playerHasBlackjack() {
 		return player.hasBlackjack();
