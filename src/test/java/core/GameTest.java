@@ -120,6 +120,18 @@ public class GameTest extends TestCase {
 		assertTrue(game.showHands().equals(expected));
 	}
 	
+	public void testPlayerStand() {
+		//file: S2 HQ SQ H5 H S5
+		Game game = new Game("playerStand.txt");
+		game.initializeHands();
+		//will read hit from file
+		game.nextTurn();
+		assertTrue(game.getPlayerScore()==17);	
+		String expected = "Player: S2 HQ S5 | Dealer: SQ X";	
+		assertTrue(game.showHands().equals(expected));
+		//if stand then it should be dealers turn next
+		assertTrue(game.whoseTurn()==1);
+	}
 	
 	@Test
 	public void testDealerHit() {
