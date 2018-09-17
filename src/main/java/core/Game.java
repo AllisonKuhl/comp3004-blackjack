@@ -55,21 +55,33 @@ public class Game {
 	
 	
 	public void nextTurn() {
-		nextTurn(input.pop());
+		if (gameState == 0) {
+			nextTurn(input.pop().toLowerCase());
+		}else {
+			if (dealer.hitOrStand()) {
+				nextTurn("h");
+			}else {
+				nextTurn("s");
+			}
+			
+		}
 	}
 	
 	public void nextTurn(String move) {
-		if (move.equals("H")) {
+		if (move.equals("h")) {
 			hit();
-		}else if (move.equals("S")) {
+		}else if (move.equals("s")) {
 			stand();
 		}
+		calculateScore();
 	}	
 	
 	public void hit() {
 		if (gameState == 0) {
 			player.addCard(input.pop());
-			if (player.isBust()||player.hasBlackjack()) {
+			if (player.isBust()) {
+				gameState = 3;
+			}else if (player.hasBlackjack()) {
 				gameState +=1;
 			}
 		}else if (gameState == 1) {
@@ -82,6 +94,10 @@ public class Game {
 	
 	public void stand() {
 		gameState += 1;
+	}
+	
+	private void calculateScore() {
+		
 	}
 	
 	public int whoseTurn() {
@@ -101,11 +117,15 @@ public class Game {
 		player.calculateScore();
 		dealer.calculateScore();
 		
-		if (dealer.hasBlackjack()) {
+		if (player.isBust()) {
+			winner= "Dealer";
+		}else if (dealer.hasBlackjack()) {
 			winner = "Dealer";		
-		}else if (player.hasBlackjack()){
+		}else if (player.hasBlackjack() || dealer.isBust() || player.getScore()>dealer.getScore()){
 			winner = "Player";
-		}		
+		}else {
+			winner = "Dealer";
+		}
 		
 	}
 	
@@ -113,7 +133,9 @@ public class Game {
 		return winner;
 	}
 	
-	
+	public boolean fromFile() {
+		return fromFile;
+	}
 	
 	
 	private LinkedList<String> readFile(String filename) {
