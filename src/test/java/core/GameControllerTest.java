@@ -50,7 +50,7 @@ public class GameControllerTest extends TestCase {
 	public void testPlayerBust() {
 		GameController game = new GameController("playerBust.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 DQ Dealer: D2 C3 D4 D10"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 DQ Dealer: D2 C3"));
 	}
 		
 	@Test 
@@ -60,12 +60,7 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 DQ Dealer: D2 D5 D3 D10"));
 	}
 	
-	@Test 
-	public void testBothGoBust{
-		GameController game = new GameController("ultraBust.txt");
-		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 DQ Dealer: D5 C8 D10"));
-	}
+
 		
 
 }
