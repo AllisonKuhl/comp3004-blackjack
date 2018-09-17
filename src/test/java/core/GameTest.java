@@ -136,7 +136,7 @@ public class GameTest extends TestCase {
 	@Test
 	public void testDealerHit() {
 		Player dealer = new Player();
-		dealer.addCards(new String[] {"S5","C7");
+		dealer.addCards(new String[] {"S5","C7"});
 		assertTrue(dealer.hitOrStand());
 		
 	}
@@ -144,14 +144,14 @@ public class GameTest extends TestCase {
 	@Test 
 	public void testDealerSoftHit() {
 			Player dealer = new Player();
-			dealer.addCards(new String[] {"S5","C2","DA");
+			dealer.addCards(new String[] {"S5","C2","DA"});
 			assertTrue(dealer.hitOrStand());
 		}
 			
 	@Test
 	public void testDealerStand() {
 		Player dealer = new Player();
-		dealer.addCards(new String[] {"S5","C2","DA","D2");
+		dealer.addCards(new String[] {"S5","C2","DA","D2"});
 		assertFalse(dealer.hitOrStand());
 	}
 	
