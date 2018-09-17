@@ -121,13 +121,13 @@ public class GameTest extends TestCase {
 	}
 	
 	public void testPlayerStand() {
-		//file: S2 HQ SQ H5 H S5
+		//file: S2 HQ SQ H5 S
 		Game game = new Game("playerStand.txt");
 		game.initializeHands();
 		//will read hit from file
 		game.nextTurn();
-		assertTrue(game.getPlayerScore()==17);	
-		String expected = "Player: S2 HQ S5 | Dealer: SQ X";	
+		assertTrue(game.getPlayerScore()==12);	
+		String expected = "Player: S2 HQ | Dealer: SQ X";	
 		assertTrue(game.showHands().equals(expected));
 		//if stand then it should be dealers turn next
 		assertTrue(game.whoseTurn()==1);
@@ -153,7 +153,7 @@ public class GameTest extends TestCase {
 	public void testDealerNonsoftSeventeen() {
 		Player dealer = new Player();
 		dealer.addCards(new String[] {"S5","C2","D10"});
-		assertTrue(dealer.hitOrStand());
+		assertFalse(dealer.hitOrStand());
 	}
 			
 	@Test
