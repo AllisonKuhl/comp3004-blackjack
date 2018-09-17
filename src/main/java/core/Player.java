@@ -20,6 +20,7 @@ public class Player {
 		for (int i = 0; i < arr.length;i++) {
 			hand.add(new Card(arr[i]));
 		}
+		calculateScore();
 	}
 	
 	public void calculateScore() {

@@ -34,9 +34,7 @@ public class Game {
 		player.addCard(input.pop());
 		dealer.addCard(input.pop());
 		dealer.addCard(input.pop());
-		
-	   player.calculateScore();
-	   dealer.calculateScore();
+	
 	   if (player.hasBlackjack() == true || dealer.hasBlackjack() == true) {
 		   gameState = 3;
 	   }
