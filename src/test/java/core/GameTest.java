@@ -148,6 +148,13 @@ public class GameTest extends TestCase {
 			dealer.addCards(new String[] {"S4","C2","DA"});
 			assertTrue(dealer.hitOrStand());
 		}
+	
+	@Test
+	public void testDealerNonsoftSeventeen() {
+		Player dealer = new Player();
+		dealer.addCards(new String[] {"S5","C2","D10"});
+		assertTrue(dealer.hitOrStand());
+	}
 			
 	@Test
 	public void testDealerStand() {
