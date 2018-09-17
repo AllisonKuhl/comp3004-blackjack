@@ -1,5 +1,7 @@
 package core;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 public class GameControllerTest extends TestCase {
@@ -9,6 +11,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("initialBlackjackPlayer.txt");
 		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: SQ CA | Dealer: S2 S5"));
+		System.out.println(game.showHand());
 	}
 
 	@Test
@@ -36,7 +39,7 @@ public class GameControllerTest extends TestCase {
 	public void testDealerWins() {
 		GameController game = new GameController("dealerWins.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DQ"));
+		assertTrue(game.showHand().equals("Player: S2 S5 | Dealer: C3 C2 DK D4"));
 	}
 		
 	@Test
