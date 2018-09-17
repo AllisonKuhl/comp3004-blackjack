@@ -22,42 +22,42 @@ public class GameControllerTest extends TestCase {
 	public void testPlayerWinsMultipleHits(){
 		GameController game = new GameController("playerHits.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 SA Dealer: CK C8"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 SA | Dealer: CK C8"));
 	}
 	
 	@Test
 	public void testPlayerWinsDealerBust(){
 		GameController game = new GameController("dealerBust.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 Dealer: C3 C2 DK DQ"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DQ"));
 	}
 	
 	@Test
 	public void testPlayerBlackjackAfterManyHits(){
 		GameController game = new GameController("playerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 Dealer: C2 C5"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 | Dealer: C2 C5"));
 	}
 	
 	@Test
 	public void testDealerBlackjackAfterHits() {
 		GameController game = new GameController("dealerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 Dealer: D5 C5 DA"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 C3 | Dealer: D3 D2 C4 CA DA"));
 	}
 	
 	@Test 
 	public void testPlayerBust() {
 		GameController game = new GameController("playerBust.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 DQ Dealer: D2 C3"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 DQ | Dealer: D2 C3"));
 	}
 		
 	@Test 
 	public void testTieGame() {
 		GameController game = new GameController("tieGame.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 DQ Dealer: D2 D5 D3 D10"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 DQ | Dealer: D2 D5 D3 D10"));
 	}
 	
 
