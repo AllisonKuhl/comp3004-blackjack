@@ -6,10 +6,12 @@ import java.util.LinkedList;
 public class Player {
 	
 	LinkedList<Card> hand = new LinkedList<Card>();
+	LinkedList<Card> splitHand = new LinkedList<Card>();
 	boolean bust = false;
 	boolean blackjack = false;
 	int score = 0;
-	
+	int split = 0;
+	int splitScore = 0;
 	
 	public void addCard(String card) {
 		hand.add(new Card(card));
@@ -53,6 +55,49 @@ public class Player {
 		
 		score = total;
 				
+	}
+	
+	public boolean canSplit() {
+		return hand.get(0).getValue() == hand.get(1).getValue();
+	}
+	
+	public void split() {
+		split = 1;
+		splitHand.add(hand.removeLast());
+	}
+	
+	public int getSplitScore() {
+		return splitScore;
+	}
+	
+	//transfers elements from first hand to second hand
+	public void getSecondHand() {
+		splitScore = score;
+		
+		Iterator<Card> Iterator = hand.iterator();
+		while (Iterator.hasNext()) {
+		  splitHand.add(Iterator.next());
+		}
+		split+=1;
+		hand.clear();
+		hand.add(splitHand.getFirst());
+	}
+	
+	public void chooseBestHand() {
+		if (splitScore < 22 && splitScore > score) {
+			hand.clear();
+		   Iterator<Card> Iterator = splitHand.iterator();
+			while (Iterator.hasNext()) {
+			  hand.add(Iterator.next());
+			}
+			hand.pop();
+			score = splitScore;
+		}
+		
+	}
+	
+	public int isSplit() {
+		return split;
 	}
 	
 	public String getFinalScore() {
