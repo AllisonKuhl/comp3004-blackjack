@@ -5,7 +5,8 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 public class GameControllerTest extends TestCase {
-
+	
+	
 	@Test
 	public void testPlayerWinsInitially(){
 		GameController game = new GameController("initialBlackjackPlayer.txt");
@@ -25,6 +26,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("playerHits.txt");
 		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 SA | Dealer: CK C8"));
+		assertTrue(game.finalScore().equals("Player: 19 | Dealer: 18"));
 	}
 	
 	@Test
@@ -32,6 +34,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("dealerBust.txt");
 		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DQ"));
+		assertTrue(game.finalScore().equals("Player: 18 | Dealer: BUST"));
 	}
 	
 	@Test
@@ -39,6 +42,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("dealerWins.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 | Dealer: C3 C2 DK D4"));
+		assertTrue(game.finalScore().equals("Player: 7 | Dealer: 19"));
 	}
 		
 	@Test
@@ -46,13 +50,14 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("playerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 | Dealer: C10 C7"));
+		assertTrue(game.finalScore().equals("Player: BLACKJACK | Dealer: 17"));
 	}
 	
 	@Test
 	public void testDealerBlackjackAfterHits() {
 		GameController game = new GameController("dealerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 C3 | Dealer: D3 D2 C4 CA DA"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 C3 | Dealer: D3 D2 C4 C6 D6"));
 	}
 	
 	@Test 
@@ -67,6 +72,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("tieGame.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 | Dealer: D2 D5 D3 D10"));
+		assertTrue(game.finalScore().equals("Player: 20 | Dealer: 20"));
 	}
 	
 
