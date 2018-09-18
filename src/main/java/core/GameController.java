@@ -21,6 +21,16 @@ public class GameController {
 			game.initializeHands();
 			System.out.println(game.showHands());
 			
+			if (game.playerCanSplit() && !game.fromFile()) {
+				System.out.println("Looks like you have the option of splitting!");
+				System.out.println("Would you like to split? (y/n): ");
+				String input = getUserInput("y","n");
+				if (input == "y") {
+					game.nextTurn("d");
+				}
+			}
+			
+			
 			while (game.whoseTurn() != 3){
 				
 				if (!game.fromFile() && game.whoseTurn()==0){
