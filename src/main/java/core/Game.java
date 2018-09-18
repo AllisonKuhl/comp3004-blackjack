@@ -86,6 +86,7 @@ public class Game {
 	
 	public void hit() {
 		if (gameState == 0) {
+			System.out.println("You draw: " + input.getFirst());
 			player.addCard(input.pop());
 			if (player.isBust()) {
 				gameState = 3;
@@ -93,6 +94,7 @@ public class Game {
 				gameState +=1;
 			}
 		}else if (gameState == 1) {
+			System.out.println("Dealer hits. They draw: " + input.getFirst());
 			dealer.addCard(input.pop());
 			if (dealer.isBust()||dealer.hasBlackjack()) {
 				gameState +=1;
@@ -101,6 +103,12 @@ public class Game {
 	}
 	
 	public void stand() {
+		if (gameState == 0) {
+			System.out.println("You stand. Your final hand is: " + player.showHand());
+		}else if (gameState == 1) {
+			System.out.println("Dealer stands. Their final hand is: " + dealer.showHand());
+		}
+		
 		gameState += 1;
 	}
 	

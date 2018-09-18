@@ -17,7 +17,7 @@ public class GameController {
 		if (game == null) {
 			initGame();	
 		}
-			System.out.println("Game is starting! The dealer deals the cards. Here's what we got so far:");
+			System.out.println("Game is starting! The dealer deals the cards. Here are the initial hands:");
 			game.initializeHands();
 			System.out.println(game.showHands());
 			
@@ -82,7 +82,8 @@ public class GameController {
 		String input = scan.next();
 		while (!(input.equals(opt1) || input.equals(opt2))){
 			System.out.println("Wrong input. Please try again.");
-			System.out.print("Enter either " + opt1 + " or " + opt2 + ":");
+			System.out.print("Enter either " + opt1 + " or " + opt2 + ": ");
+			input = scan.next();
 		}
 		
 		return input;
