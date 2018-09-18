@@ -184,12 +184,13 @@ public class GameTest extends TestCase {
 		player.addCards(new String[] {"C5", "S5"});
 		player.split();
 		player.addCards(new String[] {"SA", "SQ", "S4"});
+		player.addSplitCard("H5");
 		assertTrue(player.showHand().equals("C5 SA SQ S4"));
 		player.getSecondHand();	
 		assertTrue(player.getSplitScore() == 20);
 		player.addCards(new String[] {"S2","S3"});
-		assertTrue(player.getScore() == 10);
-		assertTrue(player.showHand().equals("S5 S2 S3"));
+		assertTrue(player.getScore() == 15);
+		assertTrue(player.showHand().equals("S5 H5 S2 S3"));
 		
 	}
 	
@@ -216,7 +217,10 @@ public class GameTest extends TestCase {
 		player.addSplitCard("C5");
 		player.addCard("D3");
 		player.getSecondHand();
+
 		player.addCard("D5");
+		System.out.println(player.getScore());
+		System.out.println(player.showHand());
 		player.chooseBestHand();
 		assertTrue(player.getScore() == 20);
 		

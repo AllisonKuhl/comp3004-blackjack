@@ -21,12 +21,6 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.showHand().equals("Player: SQ CA | Dealer: DK SA"));
 	}
 	
-	
-	public void testPlayerSplit() {
-		
-	}
-	
-	
 	@Test
 	public void testPlayerWinsMultipleHits(){
 		GameController game = new GameController("playerHits.txt");
@@ -93,7 +87,7 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("playerSplit2.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
 		assertTrue(game.showHand().equals("Player: C5 HJ H2 | Dealer: C2 C3 DQ D4"));
-		assertTrue(game.getFinalScore().equals("Player: 18 | Dealer: 19"));
+		assertTrue(game.getFinalScore().equals("Player: 17 | Dealer: 19"));
 	}
 	
 	public void testPlayerSplitBlackjack() {
@@ -103,6 +97,10 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.getFinalScore().equals("Player: BLACKJACK | Dealer: 19"));
 	}
 	
+	public void testplayerSplitting() {
+		GameController game = new GameController("playerSplit4.txt");
+		assertTrue(game.getFinalScore().equals("Player: 20 | Dealer: 19"));
+	}
 
 
 }
