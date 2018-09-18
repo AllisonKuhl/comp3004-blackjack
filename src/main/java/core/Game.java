@@ -85,7 +85,6 @@ public class Game {
 		}
 		if (move.equals("d")) {
 			split();
-			hit();
 		}
 	}	
 	
@@ -93,6 +92,8 @@ public class Game {
 	public void split() {
 		if (gameState == 0) {
 			player.split();
+			player.addCard(input.pop());
+			player.addSplitCard(input.pop());
 		}
 		
 	}
@@ -127,10 +128,11 @@ public class Game {
 	
 	public void endTurn() {
 		if (gameState == 0 && player.isSplit()==1){
+			System.out.println("Drawing for split hand");
 			player.getSecondHand();
-			hit();
 		}else if (gameState == 0 && player.isSplit() == 2) {
 			player.chooseBestHand();
+			System.out.println(player.showHand());
 			gameState += 1;
 		}else if (player.isBust()) {
 			gameState = 3;

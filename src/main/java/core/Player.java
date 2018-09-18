@@ -63,6 +63,10 @@ public class Player {
 		return firstCard.substring(1,firstCard.length()).equals(secondCard.substring(1,secondCard.length()));
 	}
 	
+	public void addSplitCard(String card) {
+		splitHand.add(new Card(card));
+	}
+	
 	public void split() {
 		split = 1;
 		splitHand.add(hand.removeLast());
@@ -82,7 +86,10 @@ public class Player {
 		}
 		split+=1;
 		hand.clear();
-		hand.add(splitHand.getFirst());
+		hand.add(splitHand.get(0));
+		hand.add(splitHand.get(1));
+		blackjack = false;
+		bust = false;
 	}
 	
 	public void chooseBestHand() {
@@ -93,6 +100,8 @@ public class Player {
 			  hand.add(Iterator.next());
 			}
 			hand.pop();
+			hand.pop();
+			calculateScore();
 			score = splitScore;
 		}
 		

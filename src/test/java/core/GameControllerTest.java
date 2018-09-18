@@ -102,5 +102,10 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.getFinalScore().equals("Player: 20 | Dealer: 19"));
 	}
 
-
+	public void testPlayerSplittingStandsImmediately() {
+		GameController game = new GameController("playerSplit5.txt");
+		assertTrue(game.getWinner().equals("Dealer"));	
+		assertTrue(game.showHand().equals("Player: H5 HQ | Dealer: C2 C3 DQ D4"));
+		assertTrue(game.getFinalScore().equals("Player: 15 | Dealer: 19"));
+	}
 }
