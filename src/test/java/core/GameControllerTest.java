@@ -33,7 +33,7 @@ public class GameControllerTest extends TestCase {
 	public void testPlayerWinsDealerBust(){
 		GameController game = new GameController("dealerBust.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DQ"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 | Dealer: C3 C2 DK DJ"));
 		assertTrue(game.getFinalScore().equals("Player: 18 | Dealer: BUST"));
 	}
 	
