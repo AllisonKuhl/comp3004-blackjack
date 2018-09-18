@@ -178,6 +178,19 @@ public class GameTest extends TestCase {
 		assertFalse(dealer.hitOrStand());
 	}
 	
-
+	@Test
+	public void testCreateSecondHand() {
+		Player player = new Player();
+		player.addCards(new String[] {"C5", "S5"});
+		player.split();
+		player.addCards(new String[] {"SA", "SQ", "S4"});
+		assertTrue(player.showHand().equals("C5 SA SQ S4"));
+		player.getSecondHand();	
+		assertTrue(player.getSplitScore() == 20);
+		player.addCards(new String[] {"S2","S3"});
+		assertTrue(player.getScore() == 10);
+		assertTrue(player.showHand().equals("S5 S2 S3"));
+		
+	}
 	
 }
