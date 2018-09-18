@@ -197,9 +197,11 @@ public class GameTest extends TestCase {
 		Player player = new Player();
 		player.addCards(new String[] {"C5", "S5"});
 		player.split();
-		player.addCards(new String[] {"SA", "SQ", "S4"});
+		player.addCard("D6");
+		player.addSplitCard("H2");
+		player.addCards(new String[] {"S3", "S6"});
 		player.getSecondHand();	
-		player.addCards(new String[] {"S2","S3"});
+		player.addCards(new String[] {"SJ", "S2"});
 		player.chooseBestHand();
 		assertTrue(player.getScore() == 20);
 		assertTrue(player.showHand().equals("C5 SA SQ S4"));
