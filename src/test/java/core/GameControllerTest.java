@@ -11,7 +11,6 @@ public class GameControllerTest extends TestCase {
 		GameController game = new GameController("initialBlackjackPlayer.txt");
 		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: SQ CA | Dealer: S2 S5"));
-		System.out.println(game.showHand());
 	}
 
 	@Test
@@ -38,7 +37,7 @@ public class GameControllerTest extends TestCase {
 	@Test
 	public void testDealerWins() {
 		GameController game = new GameController("dealerWins.txt");
-		assertTrue(game.getWinner().equals("Player"));	
+		assertTrue(game.getWinner().equals("Dealer"));	
 		assertTrue(game.showHand().equals("Player: S2 S5 | Dealer: C3 C2 DK D4"));
 	}
 		
@@ -46,7 +45,7 @@ public class GameControllerTest extends TestCase {
 	public void testPlayerBlackjackAfterManyHits(){
 		GameController game = new GameController("playerHitsBlackjack.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 | Dealer: C2 C5"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S8 D3 | Dealer: C10 C7"));
 	}
 	
 	@Test
@@ -67,7 +66,7 @@ public class GameControllerTest extends TestCase {
 	public void testTieGame() {
 		GameController game = new GameController("tieGame.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 DQ | Dealer: D2 D5 D3 D10"));
+		assertTrue(game.showHand().equals("Player: S2 S5 S3 S10 | Dealer: D2 D5 D3 D10"));
 	}
 	
 

@@ -77,7 +77,6 @@ public class Game {
 		}else if (move.equals("s")) {
 			stand();
 		}
-		calculateScore();
 	}	
 	
 	public void hit() {
@@ -100,9 +99,6 @@ public class Game {
 		gameState += 1;
 	}
 	
-	private void calculateScore() {
-		
-	}
 	
 	public int whoseTurn() {
 		return gameState;

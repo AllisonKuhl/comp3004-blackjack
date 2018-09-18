@@ -91,7 +91,7 @@ public class GameTest extends TestCase {
 		Player player = new Player();
 		player.addCards(new String[] {"S8","S9", "SK"});// 8+9 = 17 + 10 = 27
 		player.calculateScore();
-		assertTrue(player.isBust());		
+		assertTrue(player.isBust());
 	}
 	
 	@Test
