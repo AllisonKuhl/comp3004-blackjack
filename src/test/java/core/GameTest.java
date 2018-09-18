@@ -143,7 +143,7 @@ public class GameTest extends TestCase {
 		//will read stand from file
 		game.nextTurn();
 		assertTrue(game.getPlayerScore()==12);	
-		String expected = "Player: S2 HQ | Dealer: SQ X";	
+		String expected = "Player: S2 HQ | Dealer: SQ H5";
 		assertTrue(game.showHands().equals(expected));
 		//if stand then it should be dealers turn next
 		assertTrue(game.whoseTurn()==1);
