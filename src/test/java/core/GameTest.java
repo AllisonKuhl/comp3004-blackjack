@@ -140,7 +140,7 @@ public class GameTest extends TestCase {
 		//file: S2 HQ SQ H5 S
 		Game game = new Game("playerStand.txt");
 		game.initializeHands();
-		//will read hit from file
+		//will read stand from file
 		game.nextTurn();
 		assertTrue(game.getPlayerScore()==12);	
 		String expected = "Player: S2 HQ | Dealer: SQ X";	
