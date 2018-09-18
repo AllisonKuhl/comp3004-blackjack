@@ -55,6 +55,16 @@ public class Player {
 				
 	}
 	
+	public String getFinalScore() {
+		if (bust) {
+			return "BUST";
+		}else if (blackjack) {
+			return "BLACKJACK";
+		}else {
+			return "" + getScore();
+		}
+	}
+	
 	
 	public boolean  hitOrStand() {
 		int total = 0;

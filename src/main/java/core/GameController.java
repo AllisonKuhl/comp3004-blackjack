@@ -7,7 +7,6 @@ public class GameController {
 	Game game;
 	
 	public GameController(String filename) {
-		System.out.println("init");
 		game = new Game(filename);
 		startGame();
 	}
@@ -37,6 +36,8 @@ public class GameController {
 			
 			game.calculateWinner();
 			System.out.println("Winner is... " + game.getWinner() + "!!");
+			System.out.println("Final score is: ");
+			System.out.println(game.getFinalScore());
 			System.out.println(game.showHands());
 			System.out.println("Thanks for playing!");
 		
@@ -69,6 +70,10 @@ public class GameController {
 		
 		
 
+	}
+	
+	public String getFinalScore() {
+		return game.getFinalScore();
 	}
 	
 	public String getUserInput(String opt1,String opt2){

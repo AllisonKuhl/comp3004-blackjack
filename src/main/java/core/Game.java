@@ -57,6 +57,11 @@ public class Game {
 		return input.get(0);
 	}
 	
+	public String getFinalScore() {
+		
+		return "Player: " + player.getFinalScore() + " | Dealer: " + dealer.getFinalScore();
+	}
+	
 	
 	public void nextTurn() {
 		if (gameState == 0) {
