@@ -17,6 +17,7 @@ public class Game {
 	Player dealer = new Player();
 	String winner = "";
 	int gameState = 0; //0 for player turn, 1 for dealer turn. should probably be enum
+	boolean canSplit = false;
 	
 	public Game() {
 		input = new Deck().toQueue();
@@ -82,22 +83,35 @@ public class Game {
 		}else if (move.equals("s")) {
 			stand();
 		}
+		if (move.equals("d")) {
+			split();
+			hit();
+		}
 	}	
+	
+	
+	public void split() {
+		if (gameState == 0) {
+			player.split();
+		}
+		
+	}
+	
 	
 	public void hit() {
 		if (gameState == 0) {
-			System.out.println("You draw: " + input.getFirst());
+			System.out.println("You draw: " + input.peekFirst());
 			player.addCard(input.pop());
 			if (player.isBust()) {
-				gameState = 3;
+				endTurn();
 			}else if (player.hasBlackjack()) {
-				gameState +=1;
+				endTurn();
 			}
 		}else if (gameState == 1) {
-			System.out.println("Dealer hits. They draw: " + input.getFirst());
+			System.out.println("Dealer hits. They draw: " + input.peekFirst());
 			dealer.addCard(input.pop());
 			if (dealer.isBust()||dealer.hasBlackjack()) {
-				gameState +=1;
+				endTurn();
 			}
 		}
 	}
@@ -108,10 +122,22 @@ public class Game {
 		}else if (gameState == 1) {
 			System.out.println("Dealer stands. Their final hand is: " + dealer.showHand());
 		}
-		
-		gameState += 1;
+		endTurn();
 	}
 	
+	public void endTurn() {
+		if (gameState == 0 && player.isSplit()==1){
+			player.getSecondHand();
+			hit();
+		}else if (gameState == 0 && player.isSplit() == 2) {
+			player.chooseBestHand();
+			gameState += 1;
+		}else if (player.isBust()) {
+			gameState = 3;
+		}else {
+			gameState +=1;
+		}	
+	}
 	
 	public int whoseTurn() {
 		return gameState;
@@ -150,6 +176,9 @@ public class Game {
 		return fromFile;
 	}
 	
+	public boolean playerCanSplit() {
+		return player.canSplit();
+	}
 	
 	private LinkedList<String> readFile(String filename) {
 		

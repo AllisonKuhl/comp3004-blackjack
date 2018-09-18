@@ -58,7 +58,7 @@ public class Player {
 	}
 	
 	public boolean canSplit() {
-		return hand.get(0).getValue() == hand.get(1).getValue();
+		
 	}
 	
 	public void split() {

@@ -84,7 +84,7 @@ public class GameControllerTest extends TestCase {
 
 	public void testPlayerSplitFirstHandWins() {
 		GameController game = new GameController("playerSplit1.txt");
-		assertTrue(game.getWinner().equals("Dealer"));	
+		assertTrue(game.getWinner().equals("Player"));	
 		assertTrue(game.showHand().equals("Player: H5 HA H4 | Dealer: C2 C3 DQ D4"));
 		assertTrue(game.getFinalScore().equals("Player: 20 | Dealer: 19"));
 	}
@@ -92,13 +92,13 @@ public class GameControllerTest extends TestCase {
 	public void testPlayerSplitLoses() {
 		GameController game = new GameController("playerSplit2.txt");
 		assertTrue(game.getWinner().equals("Dealer"));	
-		assertTrue(game.showHand().equals("Player: H5 HJ H2 | Dealer: C2 C3 DQ D4"));
+		assertTrue(game.showHand().equals("Player: C5 HJ H2 | Dealer: C2 C3 DQ D4"));
 		assertTrue(game.getFinalScore().equals("Player: 18 | Dealer: 19"));
 	}
 	
 	public void testPlayerSplitBlackjack() {
-		GameController game = new GameController("playerSplit1.txt");
-		assertTrue(game.getWinner().equals("Dealer"));	
+		GameController game = new GameController("playerSplit3.txt");
+		assertTrue(game.getWinner().equals("Player"));
 		assertTrue(game.showHand().equals("Player: H5 HA S5 | Dealer: C2 C3 DQ D4"));
 		assertTrue(game.getFinalScore().equals("Player: BLACKJACK | Dealer: 19"));
 	}

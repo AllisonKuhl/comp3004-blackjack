@@ -193,7 +193,7 @@ public class GameTest extends TestCase {
 		
 	}
 	
-	public void getBestHand() {
+	public void testChooseBestHand() {
 		Player player = new Player();
 		player.addCards(new String[] {"C5", "S5"});
 		player.split();
