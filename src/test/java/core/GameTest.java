@@ -203,9 +203,22 @@ public class GameTest extends TestCase {
 		player.getSecondHand();	
 		player.addCards(new String[] {"SJ", "S2"});
 		player.chooseBestHand();
-		System.out.println(player.showHand());
 		assertTrue(player.getScore() == 20);
 		assertTrue(player.showHand().equals("C5 D6 S3 S6"));
+		
+	}
+	
+	public void testChooseBestHandSecond() {
+		Player player = new Player();
+		player.addCards(new String[] {"SK", "HK"});
+		player.split();
+		player.addCard("H6");
+		player.addSplitCard("C5");
+		player.addCard("D3");
+		player.getSecondHand();
+		player.addCard("D5");
+		player.chooseBestHand();
+		assertTrue(player.getScore() == 20);
 		
 	}
 	
