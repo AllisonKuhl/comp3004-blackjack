@@ -58,7 +58,9 @@ public class Player {
 	}
 	
 	public boolean canSplit() {
-		
+		String firstCard = hand.get(0).toString();
+		String secondCard = hand.get(1).toString();
+		return firstCard.substring(1,firstCard.length()).equals(secondCard.substring(1,secondCard.length()));
 	}
 	
 	public void split() {
