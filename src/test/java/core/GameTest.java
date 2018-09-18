@@ -69,6 +69,22 @@ public class GameTest extends TestCase {
 		assertTrue(player.getScore()==19);		
 	}
 	
+	@Test
+	public void testTwoAcesDifferentValues() {
+		Player player = new Player();
+		//SA = 11
+		//add S5 = 16
+		//add CA. will be bust if 11 so value should be 1
+		//score is now 17
+		//add another ace. DA. score is 18
+		//add final ace, HA. score is 19
+		player.addCards(new String[] {"SA", "S5", "CA", "DA","HA"});
+		assertTrue(player.getScore()==19);
+		//finally, if we add an 8, the ace that was once 11 should now be counted as 1
+		//for a total of: 1 + 5 + 1 + 1 + 1 + 8 = 17
+		player.addCard("S8");
+		assertTrue(player.getScore()==17);
+	}
 	
 	@Test
 	public void testPlayerBust() {
@@ -138,8 +154,7 @@ public class GameTest extends TestCase {
 		Player dealer = new Player();
 		System.out.println("dealer hit");
 		dealer.addCards(new String[] {"S5","C7"});		
-		assertTrue(dealer.hitOrStand());
-		
+		assertTrue(dealer.hitOrStand());		
 	}
 		
 	@Test 
