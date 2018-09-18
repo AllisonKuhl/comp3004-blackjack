@@ -206,4 +206,13 @@ public class GameTest extends TestCase {
 		
 	}
 	
+	public void testCanSplit() {
+		Player player1 = new Player();
+		player1.addCards(new String[] {"HK", "DK"});
+		assertTrue(player1.canSplit());
+		Player player2 = new Player();
+		player2.addCards(new String[] {"HK", "H10"});
+		assertFalse(player2.canSplit());
+	}
+	
 }
