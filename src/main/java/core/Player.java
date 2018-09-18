@@ -93,6 +93,8 @@ public class Player {
 	}
 	
 	public void chooseBestHand() {
+		
+		calculateScore();
 		if (splitScore < 22 && splitScore > score) {
 			hand.clear();
 		   Iterator<Card> Iterator = splitHand.iterator();
