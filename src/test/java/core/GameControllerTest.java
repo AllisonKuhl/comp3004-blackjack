@@ -90,6 +90,7 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.getFinalScore().equals("Player: 17 | Dealer: 19"));
 	}
 	
+	//how blackjack works splitting?
 	public void testPlayerSplitBlackjack() {
 		GameController game = new GameController("playerSplit3.txt");
 		assertTrue(game.getWinner().equals("Player"));
@@ -108,4 +109,41 @@ public class GameControllerTest extends TestCase {
 		assertTrue(game.showHand().equals("Player: H5 HQ | Dealer: C2 C3 DQ D4"));
 		assertTrue(game.getFinalScore().equals("Player: 15 | Dealer: 19"));
 	}
+	
+	public void testDealerDoesNotSplitIfOver17() {
+		GameController game = new GameController("dealerSplit1.txt");
+		assertTrue(game.getWinner().equals("Dealer"));	
+		assertTrue(game.showHand().equals("Player: H5 C5 | Dealer: H9 C9"));
+		assertTrue(game.getFinalScore().equals("Player: 10 | Dealer: 18"));
+	}
+	
+	public void testDealerCanSplitWithBust() {
+		GameController game = new GameController("dealerSplit2.txt");
+		assertTrue(game.getWinner().equals("Player"));	
+		assertTrue(game.showHand().equals("Player: SK H9 | Dealer: D5 SA SQ"));
+		assertTrue(game.getFinalScore().equals("Player: 19 | Dealer: 16"));
+	}
+	
+	public void testDealerCanSplitAndWin() {
+		GameController game = new GameController("dealerSplit3.txt");
+		assertTrue(game.getWinner().equals("Dealer"));	
+		assertTrue(game.showHand().equals("Player: HQ H6 | Dealer: S5 D8 D7"));
+		assertTrue(game.getFinalScore().equals("Player: 16 | Dealer: 20"));
+		
+	}
+
+	public void testDealerANDPlayerSplitBlackjack() {
+		GameController game = new GameController("dealerSplit4.txt");
+		assertTrue(game.getWinner().equals("Dealer"));	
+		assertTrue(game.showHand().equals("Player: H10 HA | Dealer: S5 DA D5"));
+		assertTrue(game.getFinalScore().equals("Player: BLACKJACK | Dealer: BLACKJACK"));
+	}
+	
+	public void testDealerANDPlayerSplitDealerLoses() {
+		GameController game = new GameController("dealerSplit5.txt");
+		assertTrue(game.getWinner().equals("Player"));	
+		assertTrue(game.showHand().equals("Player: C10 D10 | Dealer: S5 CK C3"));
+		assertTrue(game.getFinalScore().equals("Player: 20 | Dealer: 18"));
+	}
+	
 }
