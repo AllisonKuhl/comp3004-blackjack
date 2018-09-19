@@ -31,7 +31,7 @@ public class GameController {
 			}
 			
 			
-			while (game.whoseTurn() != 3){
+			while (game.whoseTurn() != 2){
 				
 				if (!game.fromFile() && game.whoseTurn()==0){
 					System.out.println("Would you like to hit or stand?");

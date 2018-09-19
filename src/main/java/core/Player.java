@@ -81,6 +81,7 @@ public class Player {
 	
 	//transfers elements from first hand to second hand
 	public void getSecondHand() {
+		
 		splitScore = score;
 		
 		Iterator<Card> Iterator = hand.iterator();
@@ -96,7 +97,7 @@ public class Player {
 	}
 	
 	public void chooseBestHand() {
-		
+	
 		calculateScore();
 		if (splitScore < 22 && splitScore > score) {
 			hand.clear();
@@ -126,7 +127,7 @@ public class Player {
 	
 	
 	public String  chooseDealerMove() {
-		
+	
 		if (canSplit()&& hand.peekFirst().getValue() < 9) {
 			return "d";
 		}

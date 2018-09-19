@@ -37,7 +37,7 @@ public class Game {
 		dealer.addCard(input.pop());
 	
 	   if (player.hasBlackjack() == true || dealer.hasBlackjack() == true) {
-		   gameState = 3;
+		   gameState = 2;
 	   }
 	}
 	
@@ -79,20 +79,30 @@ public class Game {
 			stand();
 		}
 		if (move.equals("d")) {
+			System.out.println("splitting");
 			split();
 		}
 	}	
 	
 	
 	public void split() {
+		
 		if (gameState == 0) {
 			player.split();
 			player.addCard(input.pop());
 			player.addSplitCard(input.pop());
+			player.calculateScore();
+			if (player.hasBlackjack()) {
+				gameState+=1;
+			}
 		}else if (gameState == 1) {
 			dealer.split();
 			dealer.addCard(input.pop());
 			dealer.addSplitCard(input.pop());
+			dealer.calculateScore();
+			if (dealer.hasBlackjack()) {
+				gameState+=1;
+			}
 		}
 		
 	}
@@ -126,7 +136,8 @@ public class Game {
 	}
 	
 	public void endTurn() {
-		if (player.hasBlackjack()||dealer.hasBlackjack()) {
+				
+		if (player.hasBlackjack()&&gameState==0||dealer.hasBlackjack()) {
 			gameState+=1;
 		}else if (gameState == 0 && player.isSplit()==1){
 			System.out.println("Drawing for split hand");
@@ -138,7 +149,7 @@ public class Game {
 			System.out.println("End of turn. Best hand is: " + player.showHand());
 			gameState += 1;
 		}else if (player.isBust()) {
-			gameState = 3;
+			gameState = 2;
 		}else if (gameState == 1 && dealer.isSplit()==1) {
 			System.out.println("Drawing for split hand");
 			System.out.println("Original hand is: " + dealer.showHand());
