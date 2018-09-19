@@ -7,6 +7,11 @@ import junit.framework.TestCase;
 public class GameControllerTest extends TestCase {
 	
 	
+	public void testInvalidFile() {
+		GameController game = new GameController("invalidfilename");
+		//will pass as long as there is no error.
+	}
+	
 	@Test
 	public void testPlayerWinsInitially(){
 		GameController game = new GameController("initialBlackjackPlayer.txt");
