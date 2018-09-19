@@ -89,8 +89,8 @@ public class Player {
 		}
 		split+=1;
 		hand.clear();
-		hand.add(splitHand.get(0));
-		hand.add(splitHand.get(1));
+		hand.add(splitHand.pop());
+		hand.add(splitHand.pop());
 		blackjack = false;
 		bust = false;
 	}
@@ -104,8 +104,6 @@ public class Player {
 			while (Iterator.hasNext()) {
 			  hand.add(Iterator.next());
 			}
-			hand.pop();
-			hand.pop();
 			calculateScore();
 			score = splitScore;
 		}

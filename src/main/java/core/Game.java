@@ -89,6 +89,10 @@ public class Game {
 			player.split();
 			player.addCard(input.pop());
 			player.addSplitCard(input.pop());
+		}else if (gameState == 1) {
+			dealer.split();
+			dealer.addCard(input.pop());
+			dealer.addSplitCard(input.pop());
 		}
 		
 	}
@@ -129,10 +133,19 @@ public class Game {
 			player.getSecondHand();
 		}else if (gameState == 0 && player.isSplit() == 2) {
 			player.chooseBestHand();
-			System.out.println(player.showHand());
+			System.out.println("End of turn. Best hand is: " + player.showHand());
 			gameState += 1;
 		}else if (player.isBust()) {
 			gameState = 3;
+		}else if (gameState == 1 && dealer.isSplit()==1) {
+			System.out.println("Drawing for split hand");
+			System.out.println("Original hand is: " + dealer.showHand());
+			System.out.println("Score is: " + dealer.getScore());
+			dealer.getSecondHand();
+		}else if (gameState == 1 && dealer.isSplit()==2) {
+			dealer.chooseBestHand();
+			System.out.println("Dealer turns end. Best hand is:" + dealer.showHand());
+			gameState += 1;
 		}else {
 			gameState +=1;
 		}	
