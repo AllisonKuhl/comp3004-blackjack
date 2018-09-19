@@ -60,7 +60,10 @@ public class Player {
 	public boolean canSplit() {
 		String firstCard = hand.get(0).toString();
 		String secondCard = hand.get(1).toString();
-		return firstCard.substring(1,firstCard.length()).equals(secondCard.substring(1,secondCard.length()));
+		if (hand.size()==2) {
+			return firstCard.substring(1,firstCard.length()).equals(secondCard.substring(1,secondCard.length()));
+		}
+		return false;
 	}
 	
 	public void addSplitCard(String card) {
@@ -124,7 +127,12 @@ public class Player {
 	}
 	
 	
-	public boolean  hitOrStand() {
+	public String  chooseDealerMove() {
+		
+		if (canSplit()&& hand.peekFirst().getValue() < 9) {
+			return "d";
+		}
+		
 		int total = 0;
 		int aces = 0;
 		int current;
@@ -143,11 +151,11 @@ public class Player {
 			aces-=1;
 		}
 		if (total == 17 && aces >= 1) {
-			return true;
+			return "h";
 		}else if (total <= 16) {
-			return true;
+			return "h";
 		}else {
-			return false;
+			return "s";
 		}
 		
 	}

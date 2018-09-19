@@ -68,12 +68,7 @@ public class Game {
 		if (gameState == 0) {
 			nextTurn(input.pop().toLowerCase());
 		}else {
-			if (dealer.hitOrStand()) {
-				nextTurn("h");
-			}else {
-				nextTurn("s");
-			}
-			
+			nextTurn(dealer.chooseDealerMove());			
 		}
 	}
 	
