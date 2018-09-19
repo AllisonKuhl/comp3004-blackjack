@@ -126,7 +126,9 @@ public class Game {
 	}
 	
 	public void endTurn() {
-		if (gameState == 0 && player.isSplit()==1){
+		if (player.hasBlackjack()||dealer.hasBlackjack()) {
+			gameState+=1;
+		}else if (gameState == 0 && player.isSplit()==1){
 			System.out.println("Drawing for split hand");
 			System.out.println("Original hand is: " + player.showHand());
 			System.out.println("Score is: " + player.getScore());

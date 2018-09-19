@@ -169,19 +169,7 @@ public class GameTest extends TestCase {
 		dealer.addCards(new String[] {"S5","C2","D10"});
 		assertTrue(dealer.chooseDealerMove().equals("s"));
 	}
-	
-	public void testDealerSplit() {
-		Player dealer = new Player();
-		dealer.addCards(new String[] {"S5","C5"});
-		assertTrue(dealer.chooseDealerMove().equals("d"));
-	}
-	
-	public void testDealerSplitCardsOver17() {
-		Player dealer = new Player();
-		dealer.addCards(new String[] {"S9","C9"});
-		assertTrue(dealer.chooseDealerMove().equals("s"));
-	}
-			
+		
 	@Test
 	public void testDealerStand() {
 		Player dealer = new Player();
@@ -189,64 +177,5 @@ public class GameTest extends TestCase {
 		assertTrue(dealer.chooseDealerMove().equals("s"));
 	}
 	
-	@Test
-	public void testCreateSecondHand() {
-		Player player = new Player();
-		player.addCards(new String[] {"C5", "S5"});
-		player.split();
-		player.addCards(new String[] {"SA", "SQ", "S4"});
-		player.addSplitCard("H5");
-		assertTrue(player.showHand().equals("C5 SA SQ S4"));
-		player.getSecondHand();	
-		assertTrue(player.getSplitScore() == 20);
-		player.addCards(new String[] {"S2","S3"});
-		assertTrue(player.getScore() == 15);
-		assertTrue(player.showHand().equals("S5 H5 S2 S3"));
-		
-	}
-	
-	public void testChooseBestHand() {
-		Player player = new Player();
-		player.addCards(new String[] {"C5", "S5"});
-		player.split();
-		player.addCard("D6");
-		player.addSplitCard("H2");
-		player.addCards(new String[] {"S3", "S6"});
-		player.getSecondHand();	
-		player.addCards(new String[] {"SJ", "S2"});
-		player.chooseBestHand();
-		assertTrue(player.getScore() == 20);
-		assertTrue(player.showHand().equals("C5 D6 S3 S6"));
-		
-	}
-	
-	public void testChooseBestHandSecond() {
-		Player player = new Player();
-		player.addCards(new String[] {"SK", "HK"});
-		player.split();
-		player.addCard("H6");
-		player.addSplitCard("C5");
-		player.addCard("D3");
-		player.getSecondHand();
 
-		player.addCard("D5");
-		System.out.println(player.getScore());
-		System.out.println(player.showHand());
-		player.chooseBestHand();
-		assertTrue(player.getScore() == 20);
-		
-	}
-	
-	public void testCanSplit() {
-		Player player1 = new Player();
-		player1.addCards(new String[] {"HK", "DK"});
-		assertTrue(player1.canSplit());
-		Player player2 = new Player();
-		player2.addCards(new String[] {"HK", "H10"});
-		assertFalse(player2.canSplit());
-		Player player3 = new Player();
-		player3.addCards(new String[] {"HK","CK","D5"});
-		assertFalse(player3.canSplit());
-	}
-	
 }
