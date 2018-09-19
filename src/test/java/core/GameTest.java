@@ -179,7 +179,7 @@ public class GameTest extends TestCase {
 	public void testDealerSplitCardsOver17() {
 		Player dealer = new Player();
 		dealer.addCards(new String[] {"S9","C9"});
-		assertTrue(dealer.chooseDealerMove().equals("d"));
+		assertTrue(dealer.chooseDealerMove().equals("s"));
 	}
 			
 	@Test
