@@ -152,30 +152,41 @@ public class GameTest extends TestCase {
 	@Test
 	public void testDealerHit() {
 		Player dealer = new Player();
-		System.out.println("dealer hit");
 		dealer.addCards(new String[] {"S5","C7"});		
-		assertTrue(dealer.hitOrStand());		
+		assertTrue(dealer.chooseDealerMove().equals("h"));		
 	}
 		
 	@Test 
 	public void testDealerSoftHit() {
 			Player dealer = new Player();
 			dealer.addCards(new String[] {"S4","C2","DA"});
-			assertTrue(dealer.hitOrStand());
+			assertTrue(dealer.chooseDealerMove().equals("h"));
 		}
 	
 	@Test
 	public void testDealerNonsoftSeventeen() {
 		Player dealer = new Player();
 		dealer.addCards(new String[] {"S5","C2","D10"});
-		assertFalse(dealer.hitOrStand());
+		assertTrue(dealer.chooseDealerMove().equals("s"));
+	}
+	
+	public void testDealerSplit() {
+		Player dealer = new Player();
+		dealer.addCards(new String[] {"S5","C5"});
+		assertTrue(dealer.chooseDealerMove().equals("d"));
+	}
+	
+	public void testDealerSplitCardsOver17() {
+		Player dealer = new Player();
+		dealer.addCards(new String[] {"S9","C9"});
+		assertTrue(dealer.chooseDealerMove().equals("d"));
 	}
 			
 	@Test
 	public void testDealerStand() {
 		Player dealer = new Player();
 		dealer.addCards(new String[] {"S5","C2","DA","D2"});
-		assertFalse(dealer.hitOrStand());
+		assertTrue(dealer.chooseDealerMove().equals("s"));
 	}
 	
 	@Test
@@ -233,6 +244,9 @@ public class GameTest extends TestCase {
 		Player player2 = new Player();
 		player2.addCards(new String[] {"HK", "H10"});
 		assertFalse(player2.canSplit());
+		Player player3 = new Player();
+		player3.addCards(new String[] {"HK","CK","D5"});
+		assertFalse(player3.canSplit());
 	}
 	
 }
