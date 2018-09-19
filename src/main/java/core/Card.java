@@ -6,7 +6,7 @@ public class Card {
 	private String num;
 	private int value;
 
-
+	
 	public Card(String name) {
 		this.name = name;
 		this.num = name.substring(1,name.length());
@@ -14,7 +14,6 @@ public class Card {
 	}
 	
 	private void calculateValue(String cardnum) {
-		
 		if (cardnum.equals("K")||cardnum.equals("Q")||cardnum.equals("J")) {
 			this.value = 10;
 		}else if (cardnum.equals("A")) {
@@ -24,7 +23,10 @@ public class Card {
 		}
 		
 	}
-		
+	
+	
+	//GETTERS
+	
 	public int getValue() {
 		return value;
 	}
@@ -34,6 +36,6 @@ public class Card {
 	}
 		
 		
-	}
+}
 	
 	

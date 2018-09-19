@@ -6,6 +6,8 @@ public class GameController {
 	
 	Game game;
 	
+	//initalizes a game with a file right away without asking prefered input
+	//for testing purposes
 	public GameController(String filename) {
 		try {
 			game = new Game(filename);
@@ -17,9 +19,10 @@ public class GameController {
 	
 	public GameController() {}
 	
+	
 	public void startGame() {
-		if (game == null) {
-			initGame();	
+		if (game == null) { //checks to make sure game isn't already initialized
+			initGame();	 //otherwise checks for file or console input
 		}
 			System.out.println("Game is starting! The dealer deals the cards. Here are the initial hands:");
 			game.initializeHands();
@@ -34,11 +37,11 @@ public class GameController {
 				}
 			}
 					
-			while (game.whoseTurn() != 2){
+			while (game.whoseTurn() != 2){ //2 == GAME OVER!
 				
 				if (!game.fromFile() && game.whoseTurn()==0){
 					System.out.println("Would you like to hit or stand?");
-					System.out.println("(This is your current hand):" + game.showHands() );// + game.getPlayerHand());
+					System.out.println("(This is your current hand):" + game.showHands() );
 					String input = getUserInput("h","s");
 					game.nextTurn(input);
 				}else{
@@ -55,15 +58,8 @@ public class GameController {
 			System.out.println("Thanks for playing!");
 		
 	}
-
-	public String getWinner() {
-		return game.getWinner();
-	}
 	
-	public String showHand() {
-		return game.showHands();
-	}
-	
+	//prompts user for file or console input
 	private void initGame(){
 		System.out.println("Welcome to blackjack!");
 		System.out.println("Would you like to play through the console (c) or do you have a file? (f)");
@@ -83,10 +79,7 @@ public class GameController {
 		
 	}
 	
-	public String getFinalScore() {
-		return game.getFinalScore();
-	}
-	
+	//gets user input. Will only accept the two options passed in, otherwise will keep prompting user for correct info
 	public String getUserInput(String opt1,String opt2){
 		Scanner scan = new Scanner(System.in); 
 		System.out.print("Enter your choice: ");
@@ -99,5 +92,20 @@ public class GameController {
 		
 		return input;
 	}
-
+	
+	
+	//GETTERS
+	
+	public String getWinner() {
+		return game.getWinner();
+	}
+	
+	public String showHand() {
+		return game.showHands();
+	}
+	
+	public String getFinalScore() {
+		return game.getFinalScore();
+	}
+	
 }
