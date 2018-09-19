@@ -7,8 +7,12 @@ public class GameController {
 	Game game;
 	
 	public GameController(String filename) {
-		game = new Game(filename);
-		startGame();
+		try {
+			game = new Game(filename);
+			startGame();	
+		}catch(Exception e) {
+			System.out.println("Sorry, that file is invalid!");
+		}
 	}
 	
 	public GameController() {}
@@ -29,8 +33,7 @@ public class GameController {
 					game.nextTurn("d");
 				}
 			}
-			
-			
+					
 			while (game.whoseTurn() != 2){
 				
 				if (!game.fromFile() && game.whoseTurn()==0){
@@ -78,8 +81,6 @@ public class GameController {
 			game = new Game();
 		}
 		
-		
-
 	}
 	
 	public String getFinalScore() {

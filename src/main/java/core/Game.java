@@ -1,12 +1,9 @@
 package core;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Game {
@@ -25,8 +22,13 @@ public class Game {
 	}
 	
 	public Game(String file) {
-		input = readFile(file);
-		fromFile = true;
+		try {
+			input = readFile(file);
+			fromFile = true;
+		} catch (Exception e) {
+	
+		}
+	
 	}
 	
 		
@@ -205,7 +207,7 @@ public class Game {
 		return player.canSplit();
 	}
 	
-	private LinkedList<String> readFile(String filename) {
+	private LinkedList<String> readFile(String filename) throws FileNotFoundException {
 		
 		LinkedList<String> q = new LinkedList<String>(); 
 		String input;
@@ -214,7 +216,8 @@ public class Game {
 		
 		
 		//error checking. If file does not exist, just move to random deck?
-		File file = new File(classLoader.getResource(filename).getFile());
+		try {
+			File file = new File(classLoader.getResource(filename).getFile());
 		
 		try (Scanner scanner = new Scanner(file)) {
 
@@ -229,11 +232,11 @@ public class Game {
 		    }
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("This file does not exist!");
+		}		
+		}finally { 
+			return q;
 		}
-		 		 
-		 return q;
-
 	}
 	
 	
