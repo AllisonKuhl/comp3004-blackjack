@@ -120,8 +120,8 @@ public class GameControllerTest extends TestCase {
 	public void testDealerCanSplitWithBust() {
 		GameController game = new GameController("dealerSplit2.txt");
 		assertTrue(game.getWinner().equals("Player"));	
-		assertTrue(game.showHand().equals("Player: SK H9 | Dealer: D5 SA SQ"));
-		assertTrue(game.getFinalScore().equals("Player: 19 | Dealer: 16"));
+		assertTrue(game.showHand().equals("Player: SK H9 | Dealer: D5 CQ D2"));
+		assertTrue(game.getFinalScore().equals("Player: 19 | Dealer: 17"));
 	}
 	
 	public void testDealerCanSplitAndWin() {
